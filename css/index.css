@@ -1,0 +1,35 @@
+.help{margin-right:10%;}
+.red{color: red;}
+a{color: red;}
+#search .form-control{margin-top: 1px;}
+.median{height:500px;}
+.median>.thumbnail{margin-right:10px;}
+.proc{height:30px;border-bottom: #000 1px solid;line-height:27px;}
+.proc-b{height:30px;border-top: #ccc 1px solid;line-height:27px;}
+.board>.thumbnail{border:1px solid red;}
+/*#page{list-style: none;text-align: center;}
+#page li{border: 1px solid blue;display: inline-block;width: 20px;
+height: 20px;line-height: 20px;text-align: center;margin-right: 3px;}
+#page li.curr{background-color: red;color: #fff;}
+#page li.nohref{border: none;color: #000;}*/
+.release>textarea{width: 88%;}
+.release>#release{width: 10%;height:100px;}
+.board>.thumbnail>table{width: 100%;text-align: center;}
+#add>table td{width:80px;height: 30px;text-align:right;}
+/*日历*/
+.rili{width:50px;float: left;text-align: center;}
+.rili:hover{background: #ccc;cursor: pointer;}
+.left{float: left;}
+.clear{clear: left;}
+.next{width:120px;border: 0px solid #000;text-align: center;}
+.next:hover{background: #ccc;cursor: pointer;}
+.y_m{width:100px;}
+/*登录*/
+.login_web,.reg_web{width: 50%;position: absolute;z-index: 9; top: 22%;left:25%;display:none;}
+/*成员信息*/
+#member_table{width: 100%;text-align: center;}
+/*分页*/
+#page{list-style: none;text-align: center;}
+#page li{border: 1px solid blue;display: inline-block;width: 20px;height: 20px;line-height: 20px;text-align: center;margin-right: 3px;}
+#page li.curr{background-color:red;color: #fff;}
+#page li.nohref{border: none;color: #000;font-weight:bold;}
