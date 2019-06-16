@@ -74,7 +74,7 @@ function board_page(curr_page,page_id){
 			alert('公告ajax请求失败'+result+status+xhr);
 		}
 	});
-	}else if(page_id == 2){
+	}else if(page_id == 2){//意见留言
 	$('.board').load('message.html');
 	$('.index').removeClass('active');
 	$('.daka').removeClass('active');
@@ -97,7 +97,7 @@ function board_page(curr_page,page_id){
 			alert('意见留言ajax请求失败'+result+status+xhr);
 		}
 	});
-	}else if(page_id == 4){
+	}else if(page_id == 4){//成员信息
 	$('.board').load('member.html');
 	$('.index').removeClass('active');
 	$('.message').removeClass('active');
@@ -114,7 +114,8 @@ function board_page(curr_page,page_id){
 				//alert(this.m_name);
 				if(this.sex == 1)this.sex = '男';else if(this.sex == 0) this.sex = '女';
 				if(this.is_drop == 0)this.is_drop = '是';else if(this.is_drop == 1) this.is_drop = '否';
-				var str = '<div class="thumbnail "><table border="1" id="member_table" ><tr><td>姓名</td><td><b>'+this.uname+'</b></td><td>性别</td><td><b>'+this.sex+'</b></td><td>电话</td><td><b>'+this.phone+'</b></td><td>部门</td><td><b>'+this.class+'</b></td><td>小组</td><td><b>'+this.group+'</b></td><td>是否住宿</td><td><b>'+this.is_drop+'</b></td><td>职位</td><td><b>'+this.work+'</b></td></tr><tr><td>年龄</td><td><b>'+this.old+'</b></td><td>家庭住址</td><td colspan="3"><b>'+this.familydir+'</b></td><td>身份证</td><td colspan="3"><b>'+this.carid+'</b></td><td>加入时间</td><td><b>'+this.join+'</b></td><td>退出时间</td><td><b>'+this.exit+'</b></td></tr></table></div>';
+				//<td><b>'+this.old+'</b></td><td>家庭住址</td><td colspan="3"><b>'+this.familydir+'</b></td><td>身份证</td><td colspan="3"><b>'+this.carid+'</b></td><td>加入时间</td><td><b>'+this.join+'</b></td><td>退出时间</td><td><b>'+this.exit+'</b></td>
+				var str = '<div class="thumbnail "><table border="1" id="member_table" ><tr><td>姓名</td><td><b>'+this.uname+'</b></td><td>性别</td><td><b>'+this.sex+'</b></td><td>电话</td><td><b>'+this.phone+'</b></td><td>部门</td><td><b>'+this.class+'</b></td><td>小组</td><td><b>'+this.group+'</b></td><td>是否住宿</td><td><b>'+this.is_drop+'</b></td><td>职位</td><td><b>'+this.work+'</b></td></tr><tr><td colspan="14">年龄、家庭住址、身份证号、加入退出时间等，需要管理员才能查看</td></tr></table></div>';
 				$('#member_all').before(str);
 			});
 		},
@@ -180,8 +181,8 @@ function daka(){
 		}
 	});
 }
-//点击增加成员时======================================
-function add(){
+//点击增加成员时======================================已弃用
+/*function add(){
 	if(!($('.add').hasClass('disabled'))){
 		$('.board').load('add.html');
 		$('.index').removeClass('active');
@@ -190,7 +191,7 @@ function add(){
 		$('.daka').removeClass('active');
 		$('.add').addClass('active');
 	}
-}
+}*/
 //点击帮助时=========================================
 function help(){
 	$('.board').load('help.html');

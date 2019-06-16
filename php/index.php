@@ -8,7 +8,7 @@ session_start();
 //公告显示====================================
 if(!empty($_POST) && $_POST['id'] == 1 && isset($_POST['curr_page']) ){
 	include 'index_page.php';//=============
-	$sql = 'SELECT * FROM notice WHERE 1=1 ';
+	$sql = 'SELECT * FROM notice WHERE 1=1 order by id desc';
 	if(!empty($_GET['uid'])){
 		$sql .= ' AND uid = '.$_GET['uid'];
 	}
@@ -34,7 +34,7 @@ if(!empty($_POST) && $_POST['id'] == 1 && isset($_POST['curr_page']) ){
 //意见留言显示================================
 if(!empty($_POST) && $_POST['id'] == 2){
 	include 'index_page.php';//=============
-	$sql = 'SELECT * FROM message WHERE 1=1 ';
+	$sql = 'SELECT * FROM message WHERE 1=1 order by id desc';
 	if(!empty($_GET['uid'])){
 		$sql .= ' AND uid = '.$_GET['uid'];
 	}
@@ -58,7 +58,7 @@ if(!empty($_POST) && $_POST['id'] == 2){
 }
 if(!empty($_POST) && $_POST['id'] == 4){
 	include 'index_page.php';//=============
-	$sql = 'SELECT * FROM user_all WHERE 1=1 ';
+	$sql = 'SELECT * FROM user_all WHERE 1=1 order by id desc';
 	if(!empty($_GET['uid'])){
 		$sql .= ' AND uid = '.$_GET['uid'];
 	}
