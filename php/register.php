@@ -5,7 +5,7 @@ session_start();
 //print_r($_POST);
 //$_SESSION['code'] = 'a123';
 //print_r($_SESSION['code']);
-	if(empty($_POST['ucode']) || empty($_POST['pwd']) || empty($_POST['pwd1']) || empty($_POST['username'])){
+	if(empty($_POST['ucode']) || empty($_POST['pwd']) || empty($_POST['pwd1']) || empty($_POST['username']) || empty($_POST['register_id'])){
 		echo "数据不能为空！";
 	}else{
 		//用户名
@@ -20,20 +20,24 @@ session_start();
 		$str = $_POST['pwd'];
 		if(preg_match($reg_pwd,$str));else exit('密码不正确长度为6-10位');
 		//===========================================
+		$sql_register = "SELECT * FROM user_all WHERE id = '{$_POST['register_id']}'";
+		$result_register = mysql_query($sql_register);
+		//echo mysql_num_rows($result);
+		if(mysql_num_rows($result_register)!=1) die('id输入错误!');
 		if($_POST['pwd'] != $_POST['pwd1']){
 			echo '两次输入的密码不一致!';
 		}else if($_POST['ucode'] != $_SESSION['code']){
 			echo '验证码有误!';
 		}else{
-		//将用户数据存入数据库
-		$pwd = md5($_POST['pwd']);
-		$sql = "INSERT INTO users(uname,upwd) 
-		VALUES('{$_POST['username']}','{$pwd}')";
-			if(mysql_query($sql)){
-				echo '注册成功!';
-			}else{
-				echo "注册失败!";
-			}
+			//将用户数据存入数据库
+			$pwd = md5($_POST['pwd']);
+			$sql = "INSERT INTO users(uid,uname,upwd) VALUES('{$_POST['register_id']}','{$_POST['username']}','{$pwd}')";
+			//echo $sql;
+				if(mysql_query($sql)){
+					echo '注册成功!';
+				}else{
+					echo "注册失败!";
+				}
 		}
 		//===========================================
 	}

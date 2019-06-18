@@ -13,7 +13,7 @@ a{color: red;}
 height: 20px;line-height: 20px;text-align: center;margin-right: 3px;}
 #page li.curr{background-color: red;color: #fff;}
 #page li.nohref{border: none;color: #000;}*/
-.release>textarea{width: 88%;}
+.release textarea{width: 88%;}
 .release>#release{width: 10%;height:100px;}
 .board>.thumbnail>table{width: 100%;text-align: center;}
 #add>table td{width:80px;height: 30px;text-align:right;}

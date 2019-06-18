@@ -16,6 +16,7 @@ if(empty($_POST['username']) && empty($_POST['pwd'])){
 	}
 	//print_r($arr);
 	$_SESSION['uid'] = $arr[0]['uid'];
+	$_SESSION['uname'] = $arr[0]['uname'];
 	//echo $_SESSION['uid'];
 	if(mysql_num_rows($res) == 1){
 		echo '欢迎您：'.$arr[0]['uname'];

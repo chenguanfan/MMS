@@ -22,9 +22,13 @@
 <link rel="stylesheet" type="text/css" href="../css/index.css"/>
 <span class="title">留言管理</span>
 	<?php while($row = mysql_fetch_assoc($result)){ ?>
+<form class="message_delform" action="" method="post">
+<input type="hidden" name="id" id="id" value="5" />
+<input type="hidden" name="message_id" value="<?php echo $row['id'] ?>" />
 <div class="thumbnail red_border">
 	<div class="proc"><?php echo $row['message_title'] ?><span class="pull-right notice"></span></div>
 	<div class="notice_content" contenteditable="true"><?php echo $row['message_content'] ?></div>
-	<div class="proc-b">发布人：<?php echo $row['m_name'] ?><span class="pull-right btn btn-warning">删除</span></div>
+	<div class="proc-b">发布人：<?php echo $row['m_name'] ?><span class="pull-right btn btn-warning message_del">删除</span></div>
 </div>
+</form>
 	<?php } $page->show(3); ?>

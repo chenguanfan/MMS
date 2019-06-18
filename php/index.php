@@ -56,6 +56,7 @@ if(!empty($_POST) && $_POST['id'] == 2){
 		echo json_encode($notice_arr);
 	}
 }
+//成员信息===============================
 if(!empty($_POST) && $_POST['id'] == 4){
 	include 'index_page.php';//=============
 	$sql = 'SELECT * FROM user_all WHERE 1=1 order by id desc';
@@ -97,6 +98,7 @@ if(!empty($_POST) && $_POST['id'] == 5){
 	}
 	//echo '<br />';
 	//print_r($rili);
+	if(empty($rili)) die(json_encode('无此id或此成员暂未签到'));
 	echo json_encode($rili);
 	//echo json_encode($notice_arr);
 }
@@ -108,5 +110,18 @@ if(!empty($_POST) && $_POST['id'] == 6){
 		echo '请先登录';
 	}
 }
-
+if(!empty($_POST) && $_POST['id'] == 7){
+	if($_POST['search_text'] == NULL)die(json_encode('请输入内容'));
+	//print_r($_POST);
+	//$search_text = $_POST['search_text'];
+	mysql_query("set @search_text = '{$_POST['search_text']}'");
+	$sql = "SELECT * FROM user_all WHERE uname = @search_text OR sex =  @search_text OR phone =  @search_text OR class =  @search_text OR group_num =  @search_text OR is_drop =  @search_text OR position =  @search_text OR old =  @search_text OR familydir =  @search_text OR carid =  @search_text OR join_date =  @search_text OR exit_date =  @search_text";
+	if(!mysql_query($sql)) die(json_encode('出错了!'));
+	$res = mysql_query($sql);
+	while($row = mysql_fetch_assoc($res)){
+		$search_arr[] = $row;
+	}
+	if(empty($search_arr) || $search_arr == NULL) die(json_encode('啥也没找到!'));
+	echo json_encode($search_arr);
+}
 ?>

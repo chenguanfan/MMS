@@ -53,6 +53,12 @@
 		</div>
 		<div class="form-group">
 			<div class="col-md-10 col-md-push-1 input-group">
+				<div class="input-group-addon">&ensp;&emsp;ID&ensp;&emsp;</div>
+				<input type="password" name="register_id" class="form-control" placeholder="请输入您的个人id"/>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-md-10 col-md-push-1 input-group">
 				<div class="input-group-addon">验证码：</div>
 				<input type="text" name="ucode" id="code" class="form-control" placeholder="请输入验证码"/>
 				<img src="gdcode.php" class="gdcode" onclick="this.src = 'php/gdcode.php?'+ Math.random()" style="vertical-align: top;" />
@@ -78,11 +84,12 @@
 					<!--<li title="需要权限" class="add disabled"><a href="#" onclick="add()">增加成员</a></li>-->
 					<li class="daka"><a href="#" id="daka_a" onclick="daka()">打卡</a></li>
 					<li id="search" class="pull-right">
-						<form action="" class="navbar-form navbar-left">
+						<form class="navbar-form navbar-left" id="searchform" method="post">
 						<div class="input-group">
-						<input type="text" class="form-control">
+						<input type="hidden" name="id" id="id" value="7" />
+						<input type="text" name="search_text" placeholder="输入成员信息" class="form-control" />
 						<span class="input-group-btn">
-						<button type="submit" class="btn btn-default glyphicon glyphicon-search"></button>
+						<button type="button" id="search_btn" class="btn btn-default glyphicon glyphicon-search"></button>
 						</span></div></form>
 					</li>
 					<hr />
@@ -90,6 +97,7 @@
 				<hr />
 				<div class="board">
 					<!--主体内容-->
+					<span id="search_show"></span>
 				</div>
 			</div>
 		</div>

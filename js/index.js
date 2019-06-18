@@ -3,7 +3,7 @@ $('#index').click(function(){
 	var curr_page = 1;
 	var page_id = 1;
 	board_page(curr_page,page_id);
-});
+}).trigger('click');
 $('#index').trigger('click');
 //点击分页下方数字按钮时=================================
 function start_board(){
@@ -114,8 +114,8 @@ function board_page(curr_page,page_id){
 				//alert(this.m_name);
 				if(this.sex == 1)this.sex = '男';else if(this.sex == 0) this.sex = '女';
 				if(this.is_drop == 0)this.is_drop = '是';else if(this.is_drop == 1) this.is_drop = '否';
-				//<td><b>'+this.old+'</b></td><td>家庭住址</td><td colspan="3"><b>'+this.familydir+'</b></td><td>身份证</td><td colspan="3"><b>'+this.carid+'</b></td><td>加入时间</td><td><b>'+this.join+'</b></td><td>退出时间</td><td><b>'+this.exit+'</b></td>
-				var str = '<div class="thumbnail "><table border="1" id="member_table" ><tr><td>姓名</td><td><b>'+this.uname+'</b></td><td>性别</td><td><b>'+this.sex+'</b></td><td>电话</td><td><b>'+this.phone+'</b></td><td>部门</td><td><b>'+this.class+'</b></td><td>小组</td><td><b>'+this.group+'</b></td><td>是否住宿</td><td><b>'+this.is_drop+'</b></td><td>职位</td><td><b>'+this.work+'</b></td></tr><tr><td colspan="14">年龄、家庭住址、身份证号、加入退出时间等，需要管理员才能查看</td></tr></table></div>';
+				//<td><b>'+this.old+'</b></td><td>家庭住址</td><td colspan="3"><b>'+this.familydir+'</b></td><td>身份证</td><td colspan="3"><b>'+this.carid+'</b></td><td>加入时间</td><td><b>'+this.join_date+'</b></td><td>退出时间</td><td><b>'+this.exit_date+'</b></td>
+				var str = '<div class="thumbnail "><table border="1" id="member_table" ><tr><td>姓名</td><td><b>'+this.uname+'</b></td><td>性别</td><td><b>'+this.sex+'</b></td><td>电话</td><td><b>'+this.phone+'</b></td><td>部门</td><td><b>'+this.class+'</b></td><td>小组</td><td><b>'+this.group_num+'</b></td><td>是否住宿</td><td><b>'+this.is_drop+'</b></td><td>职位</td><td><b>'+this.position+'</b></td></tr><tr><td colspan="14">年龄、家庭住址、身份证号、加入退出时间等，需要管理员才能查看</td></tr></table></div>';
 				$('#member_all').before(str);
 			});
 		},
@@ -275,6 +275,54 @@ $('#zhuxiao').on('click','#des',function(){
 		},
 		error:function(result,start,xhr){
 			alert('注销ajax请求失败'+result+start+xhr);
+		}
+	});
+});
+//点击留言时=========================================
+$('body').on('click','#release',function(){
+	$.ajax({
+		type:"post",
+		url:"php/release_message.php",
+		data:$('#messageform').serialize(),
+		dataType:'text',
+		success:function(result,status,xhr){
+			alert(result);
+			message();
+		},
+		error:function(result,status,xhr){
+			alert('点击留言ajax失败'+result+status+xhr);
+		}
+	});
+});
+$('#search_btn').click(function(){
+	$.ajax({
+		type:"post",
+		url:"php/index.php",
+		data:$('#searchform').serialize(),
+		dataType:'json',
+		success:function(result,status,xhr){
+			//alert(result);
+			if(result == '请输入内容' || result == '啥也没找到!' || result == '出错了!'){
+				alert(result);
+			}else{
+				$('.board').html('<span id="search_show"></span>');
+				$('.index').removeClass('active');
+				$('.member').removeClass('active');
+				$('.message').removeClass('active');
+				$('.daka').removeClass('active');
+				$('.add').removeClass('active');
+			}
+			$(result).map(function(){
+				//alert(this.uname);
+				if(this.sex == 1)this.sex = '男';else if(this.sex == 0) this.sex = '女';
+				if(this.is_drop == 0)this.is_drop = '是';else if(this.is_drop == 1) this.is_drop = '否';
+				//<td><b>'+this.old+'</b></td><td>家庭住址</td><td colspan="3"><b>'+this.familydir+'</b></td><td>身份证</td><td colspan="3"><b>'+this.carid+'</b></td><td>加入时间</td><td><b>'+this.join_date+'</b></td><td>退出时间</td><td><b>'+this.exit_date+'</b></td>
+				var str = '<div class="thumbnail "><table border="1" id="member_table" ><tr><td>姓名</td><td><b>'+this.uname+'</b></td><td>性别</td><td><b>'+this.sex+'</b></td><td>电话</td><td><b>'+this.phone+'</b></td><td>部门</td><td><b>'+this.class+'</b></td><td>小组</td><td><b>'+this.group_num+'</b></td><td>是否住宿</td><td><b>'+this.is_drop+'</b></td><td>职位</td><td><b>'+this.position+'</b></td></tr><tr><td colspan="14">年龄、家庭住址、身份证号、加入退出时间等，需要管理员才能查看</td></tr></table></div>';
+				$('.board').append(str);
+			});
+		},
+		error:function(result,status,xhr){
+			alert('点击主页搜索ajax请求失败'+result+status+xhr);
 		}
 	});
 });
